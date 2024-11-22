@@ -25,7 +25,9 @@ import datasets
 import torch
 import transformers
 from transformers import AutoModelForCausalLM, set_seed
+import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 from alignment import (
     DataArguments,
     H4ArgumentParser,
