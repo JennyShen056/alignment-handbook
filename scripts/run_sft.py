@@ -177,7 +177,7 @@ def main():
     print(f"the final trainng data size is: {len(train_dataset)}")
 
     eval_dataset = raw_datasets["test"]
-    print(f"the final trainng data size is: {len(eval_dataset)}")
+    print(f"the final evaluation data size is: {len(eval_dataset)}")
 
     with training_args.main_process_first(
         desc="Log a few random samples from the processed training set"
@@ -216,6 +216,7 @@ def main():
     train_result = trainer.train(resume_from_checkpoint=checkpoint)
     metrics = train_result.metrics
     metrics["train_samples"] = len(train_dataset)
+    print(f"the number of finallll samples {len(train_dataset)}")
     trainer.log_metrics("train", metrics)
     trainer.save_metrics("train", metrics)
     trainer.save_state()
