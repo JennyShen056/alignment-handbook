@@ -162,16 +162,22 @@ def main():
     # Decontaminate benchmarks
     ##########################
     num_raw_train_samples = len(raw_datasets["train"])
+    print(f"the original trainng data size is: {num_raw_train_samples}")
     raw_datasets = raw_datasets.filter(
         decontaminate_humaneval, batched=True, batch_size=10_000, num_proc=1
     )
+    print(f"the raw trainng data size is: {len(raw_datasets)}")
+
     num_filtered_train_samples = num_raw_train_samples - len(raw_datasets["train"])
     logger.info(
         f"Decontaminated {num_filtered_train_samples} ({num_filtered_train_samples/num_raw_train_samples * 100:.2f}%) samples from the training set."
     )
 
     train_dataset = raw_datasets["train"]
+    print(f"the final trainng data size is: {len(train_dataset)}")
+
     eval_dataset = raw_datasets["test"]
+    print(f"the final trainng data size is: {len(eval_dataset)}")
 
     with training_args.main_process_first(
         desc="Log a few random samples from the processed training set"
