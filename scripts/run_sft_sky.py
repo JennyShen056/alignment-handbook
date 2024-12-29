@@ -185,37 +185,37 @@ def main():
     ########################
     # Initialize the Trainer
     ########################
-    # If model_kwargs exists and is not None, apply it to model first
-    if model_kwargs is not None:
-        for key, value in model_kwargs.items():
-            setattr(model, key, value)
+    # # If model_kwargs exists and is not None, apply it to model first
+    # if model_kwargs is not None:
+    #     for key, value in model_kwargs.items():
+    #         setattr(model, key, value)
     
-    trainer = SFTTrainer(
-        model=model,
-        args=training_args,
-        train_dataset=train_dataset,
-        # eval_dataset=eval_dataset,
-        dataset_text_field="text",
-        max_seq_length=training_args.max_seq_length,
-        preprocessing_class=tokenizer.__class__,  # Use preprocessing_class instead of tokenizer
-        packing=True,
-        peft_config=get_peft_config(model_args),
-        dataset_kwargs=training_args.dataset_kwargs,
-    )
-
     # trainer = SFTTrainer(
     #     model=model,
-    #     model_init_kwargs=model_kwargs,
     #     args=training_args,
     #     train_dataset=train_dataset,
     #     # eval_dataset=eval_dataset,
     #     dataset_text_field="text",
     #     max_seq_length=training_args.max_seq_length,
-    #     tokenizer=tokenizer,
+    #     preprocessing_class=tokenizer.__class__,  # Use preprocessing_class instead of tokenizer
     #     packing=True,
     #     peft_config=get_peft_config(model_args),
     #     dataset_kwargs=training_args.dataset_kwargs,
     # )
+
+    trainer = SFTTrainer(
+        model=model,
+        model_init_kwargs=model_kwargs,
+        args=training_args,
+        train_dataset=train_dataset,
+        # eval_dataset=eval_dataset,
+        dataset_text_field="text",
+        max_seq_length=training_args.max_seq_length,
+        tokenizer=tokenizer,
+        packing=True,
+        peft_config=get_peft_config(model_args),
+        dataset_kwargs=training_args.dataset_kwargs,
+    )
 
     ###############
     # Training loop
