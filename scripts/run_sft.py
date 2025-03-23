@@ -163,9 +163,9 @@ def main():
     ##########################
     num_raw_train_samples = len(raw_datasets["train"])
     print(f"the original trainng data size is: {num_raw_train_samples}")
-    raw_datasets = raw_datasets.filter(
-        decontaminate_humaneval, batched=True, batch_size=10_000, num_proc=1
-    )
+    # raw_datasets = raw_datasets.filter(
+    #     decontaminate_humaneval, batched=True, batch_size=10_000, num_proc=1
+    # )
     print(f"the raw trainng data size is: {len(raw_datasets)}")
 
     num_filtered_train_samples = num_raw_train_samples - len(raw_datasets["train"])
