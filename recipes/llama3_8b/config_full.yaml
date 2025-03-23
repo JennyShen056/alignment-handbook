@@ -10,7 +10,7 @@ dataset_mixer:
   Jennny/help_messages: 1
 dataset_splits:
   - train
-  - validation
+  - test
 preprocessing_num_workers: 12
 
 # SFT trainer config
