@@ -22,7 +22,7 @@ gradient_accumulation_steps: 1
 gradient_checkpointing: true
 gradient_checkpointing_kwargs:
   use_reentrant: False
-hub_model_id: llama3_1_8b_sft_helpsteer
+hub_model_id: llama3_8b_sft_helpsteer
 hub_strategy: every_save
 learning_rate: 2.0e-05
 log_level: info
